@@ -20,12 +20,19 @@ def run_length_decode(input)
   output = ""
   i = 0
   while i < input.length
+    #if input[i] is a number
     if letter?(input[i]) == false && input[i] != " "
       count += input[i]
+
+    #if input[i] is a letter that is not preceded by a number
     elsif letter?(input[i]) && count == ""
       output += input[i]
+
+    #if input[i] is whitespace that is not preceded by a number
     elsif input[i] == " " && count == ""
       output += input[i]
+
+    #if input[i] is letter or whitespace that is preceded by a number
     else
       count.to_i.times do
         output += input[i]
