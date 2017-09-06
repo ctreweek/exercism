@@ -1,29 +1,15 @@
 def run_length_encode(input)
-  character = []
-  output = ""
+  input = input.chars.chunk{|letter| letter}.map{|letter, array| [letter, array.size]}
   i = 0
-
+  output = ""
   while i < input.length
-    if character.count < 1
-      character << input[i]
-    elsif character.count >= 1 && input[i] == character[0]
-      character << input[i]
-    elsif character.count > 1 && input[i] != character[0]
-      output += character.count.to_s
-      output += character[0]
-      character = [input[i]]
-    elsif character.count == 1 && input[i] != character[0]
-      output += character[0]
-      character = [input[i]]
+    if input[i][1] == 1
+      output += input[i][0]
+    else
+      output += input[i][1].to_s
+      output += input[i][0]
     end
     i += 1
-  end
-
-  if character.count > 1
-    output += character.count.to_s
-    output += character[0]
-  else
-    output += character[0]
   end
   return output
 end
